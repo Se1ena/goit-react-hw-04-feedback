@@ -11,24 +11,37 @@ const App = () => {
   const [bad, setBad] = useState(0);
 
   const options = ['good', 'neutral', 'bad'];
+  const totalFeedback = (good + neutral + bad);
+  const positivePercentage = Math.round(good / totalFeedback * 100);
 
-  const updateFeedback = e => {
-    const { name } = e.target;
-    if (name === 'good') {
-      setGood(prevState => prevState + 1);
-    }
-    if (name === 'neutral') {
-      setNeutral(prevState => prevState + 1);
-    }
-    if (name === 'bad') {
-      setBad(prevState => prevState + 1);
+  //const updateFeedback = e => {
+    //const { name } = e.target;
+    //if (name === 'good') {
+      //setGood(prevState => prevState + 1);
+    //}
+    //if (name === 'neutral') {
+      //setNeutral(prevState => prevState + 1);
+    //}
+    //if (name === 'bad') {
+      //setBad(prevState => prevState + 1);
+    //}
+  //};
+
+  const updateFeedback = (button) => {
+    switch (button) {
+      case 'good':
+        setGood(prState => prState + 1);
+        break;
+      case 'neutral':
+        setNeutral(prState => prState + 1);
+        break;
+      case 'bad':
+        setBad(prState => prState + 1);
+        break;
+      default:
+        console.log(`Error in type ${button}`);
     }
   };
-
-  const totalFeedback = good + neutral + bad;
-  const positivePercentage = Number.parseInt(
-    (good / (good + neutral + bad)) * 100
-  );
 
   return (
     <Div
